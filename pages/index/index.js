@@ -1,4 +1,8 @@
 // pages/index/index.js
+//需要将路径补全
+import {request} from "../../request/index.js"
+
+// console.log(request)
 Page({
 
   /**
@@ -10,43 +14,31 @@ Page({
     floorList: []
   },
   getSwiperData() {
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-      success: (result) => {
-        // console.log(result);
-        this.setData({
-          swiperList: result.data.message
-        })
-      },
-      fail: () => {},
-      complete: () => {}
-    });
+    request({
+      url: '/home/swiperdata'
+    }).then(res => {
+      this.setData({
+        swiperList: res.data.message
+      })
+    })
   },
   getCatItems() {
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems',
-      success: (result) => {
-        // console.log(result);
-        this.setData({
-          catList: result.data.message
-        })
-      },
-      fail: () => {},
-      complete: () => {}
-    });
+    request({
+      url: '/home/catitems'
+    }).then(res => {
+      this.setData({
+        catList: res.data.message
+      })
+    })
   },
   getFloorData(){
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata',
-      success: (result) => {
-        console.log(result);
-        this.setData({
-          floorList: result.data.message
-        })
-      },
-      fail: () => {},
-      complete: () => {}
-    });
+    request({
+      url: '/home/floordata'
+    }).then(res => {
+      this.setData({
+        floorList: res.data.message
+      })
+    })
   },
 
   /**
