@@ -12,3 +12,19 @@
 		<image mode="widthFix" src="{{item.image_src}}"></image>
 	</navigator>
 </view>
+
+<view class="floor">
+  <view class="floor-container" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="index1">
+    <view class="floor-title">
+      <image src="{{item1.floor_title.image_src}}" mode="widthFix" />
+    </view>
+    <view class="floor-content">
+      <navigator class="floor-item" wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="index2">
+      <!-- 图片本身不是很规范，我需要把后面的图片定为第一张图片高度的一半 -->
+      <!-- 第一张图widthFix 其余都是scaleToFill -->
+        <image src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleToFill'}}" />
+      </navigator> 
+    </view>
+  </view>
+    
+</view>

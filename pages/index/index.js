@@ -6,7 +6,8 @@ Page({
    */
   data: {
     swiperList: [],
-    catList: []
+    catList: [],
+    floorList: []
   },
   getSwiperData() {
     wx.request({
@@ -25,9 +26,22 @@ Page({
     wx.request({
       url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems',
       success: (result) => {
-        console.log(result);
+        // console.log(result);
         this.setData({
           catList: result.data.message
+        })
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+  },
+  getFloorData(){
+    wx.request({
+      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata',
+      success: (result) => {
+        console.log(result);
+        this.setData({
+          floorList: result.data.message
         })
       },
       fail: () => {},
@@ -41,6 +55,7 @@ Page({
   onLoad: function (options) {
     this.getSwiperData()
     this.getCatItems()
+    this.getFloorData()
   },
 
   /**

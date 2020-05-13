@@ -9,3 +9,30 @@ swiper {
   flex: 1;
   padding: 20rpx;
 }
+
+.floor-content{
+  /* padding: 10rpx; */
+  overflow: hidden;
+
+}
+.floor-content .floor-item {
+  float: left;
+  width: 33.3%;
+  border-left: 5rpx solid #fff;
+  border-right: 5rpx solid #fff;
+}
+.floor-content .floor-item:nth-child(2){
+  border-bottom: 5rpx solid #fff;
+}
+.floor-content .floor-item:nth-child(3){
+  border-bottom: 5rpx solid #fff;
+}
+.floor-content .floor-item:nth-last-child(-n+4){
+  /* 原图宽/原图高 = 750rpx/3/变化后的宽/2 */
+  height: 208rpx;
+}
+
+.floor-item image{
+  height: 95%;
+}
+
