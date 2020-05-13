@@ -2,7 +2,7 @@
 <SearchInput></SearchInput>
 
 <view class="cate_view">
-    <view class="menu_group">
+    <scroll-view scroll-y class="menu_group">
         <view class="menu_item">1</view>
         <view class="menu_item">2</view>
         <view class="menu_item">3</view>
@@ -103,8 +103,8 @@
         <view class="menu_item">98</view>
         <view class="menu_item">99</view>
         <view class="menu_item">100</view>
-    </view>
-    <view class="cate_detail_list">
+    </scroll-view>
+    <scroll-view scroll-y class="cate_detail_list">
         <view class="cate_detail_item">1</view>
         <view class="cate_detail_item">2</view>
         <view class="cate_detail_item">3</view>
@@ -205,5 +205,5 @@
         <view class="cate_detail_item">98</view>
         <view class="cate_detail_item">99</view>
         <view class="cate_detail_item">100</view>
-    </view>
+    </scroll-view>
 </view>
