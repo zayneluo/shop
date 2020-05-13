@@ -2,3 +2,10 @@
 swiper {
   height: 340rpx;
 }
+.nav {
+  display: flex;
+}
+.nav navigator {
+  flex: 1;
+  padding: 20rpx;
+}

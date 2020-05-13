@@ -5,15 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    swiperList: []
+    swiperList: [],
+    catList: []
   },
-  getSwiperData(){
+  getSwiperData() {
     wx.request({
       url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
       success: (result) => {
-        console.log(result);
+        // console.log(result);
         this.setData({
           swiperList: result.data.message
+        })
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+  },
+  getCatItems() {
+    wx.request({
+      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems',
+      success: (result) => {
+        console.log(result);
+        this.setData({
+          catList: result.data.message
         })
       },
       fail: () => {},
@@ -26,7 +40,7 @@ Page({
    */
   onLoad: function (options) {
     this.getSwiperData()
-      
+    this.getCatItems()
   },
 
   /**
