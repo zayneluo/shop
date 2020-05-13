@@ -1,0 +1,17 @@
+.cate_view {
+  /*左右两侧原生方式实现滚动*/
+  /*原生vh或者百分比是可以参加计算的*/
+  height: ~'calc(100vh - 90rpx)';
+  background: aqua;
+  display: flex;
+  .menu_group {
+    width: 160rpx;
+    background: green;
+    overflow: scroll;
+  }
+  .cate_detail_list {
+    flex: 1;
+    background: red;
+    overflow: scroll;
+  }
+}
