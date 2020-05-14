@@ -13,7 +13,7 @@ Page({
   },
   Cates: [],
   handleTitleChane(e) {
-    console.log(e)
+    // console.log(e)
     let {index} = e.target.dataset
     const goodsList = this.Cates[index].children
     this.setData({
@@ -28,12 +28,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCates()
+    // this.getCates()
+    this.loadData()
+  },
+  loadData(){
+    //使用本地存储优化加载速度
+    const localCate = wx.getStorageSync('cates')
+    if (localCate){
+      if ((Date.now() - localCate.time)>1000*60){
+        this.getCates()
+      }else {
+        this.Cates = localCate.data
+        const menuList = this.Cates.map((item) => {
+          return item.cat_name
+        })
+        const goodsList = this.Cates[0].children
+        this.setData({
+          menuList,
+          goodsList
+        })
+      }
+    }else {
+      this.getCates()
+    }
   },
   getCates() {
     request({url: '/categories'}).then(res => {
       // console.log(res)
       this.Cates = res.data.message
+      wx.setStorageSync('cates',{
+        data: this.Cates,
+        time: Date.now()
+      })
       const menuList = this.Cates.map((item) => {
         return item.cat_name
       })
