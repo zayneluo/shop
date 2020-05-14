@@ -1,0 +1,13 @@
+.shoptabs .shoptabs_title {
+  display: flex;
+  height: 90rpx;
+}
+.shoptabs .shoptabs_title .title_item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shoptabs .shoptabs_title .active {
+  color: var(--themeColor);
+}

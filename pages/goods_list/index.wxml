@@ -1,2 +1,10 @@
 <!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<SearchInput></SearchInput>
+<ShopTabs titleList="{{titleList}}"
+          currentIndex="{{currentIndex}}"
+          bind:changeIndex="handleChangeIndex"
+>
+    <view class="list_content" wx:if="{{currentIndex===0}}">0</view>
+    <view class="list_content" wx:elif="{{currentIndex===1}}">1</view>
+    <view class="list_content" wx:else>2</view>
+</ShopTabs>

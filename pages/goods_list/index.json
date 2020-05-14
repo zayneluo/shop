@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "SearchInput": "../../components/SearchInput/index",
+    "ShopTabs" : "../../components/ShopTabs/index"
+  },
+  "navigationBarTitleText": "商品列表"
 }

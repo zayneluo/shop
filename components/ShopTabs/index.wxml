@@ -1,0 +1,17 @@
+<!--components/ShopTabs/index.wxml-->
+<view class="shoptabs">
+    <view class="shoptabs_title">
+        <view
+                class="title_item {{currentIndex===index?'active':''}}"
+                wx:for="{{titleList}}"
+                wx:key="id"
+                data-index="{{index}}"
+                bind:tap="handleTap"
+        >
+            {{item.text}}
+        </view>
+    </view>
+    <view class="content">
+        <slot></slot>
+    </view>
+</view>
