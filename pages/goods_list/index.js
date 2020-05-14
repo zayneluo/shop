@@ -1,6 +1,13 @@
 // pages/goods_list/index.js
+import {request} from '../../request/index'
 Page({
-
+  QueryParams: {
+    //查询参数
+    query: '',
+    cid: '',
+    pagenum: 1,
+    pagesize: 20
+  },
   /**
    * 页面的初始数据
    */
@@ -8,15 +15,16 @@ Page({
     titleList: [
       {
         id: 0, text: "综合"
-      },{
+      }, {
         id: 1, text: "销量"
-      },{
+      }, {
         id: 2, text: "价格"
       }
     ],
-    currentIndex: 0
+    currentIndex: 0,
+    goodsList: []
   },
-  handleChangeIndex(e){
+  handleChangeIndex(e) {
     console.log(e.detail)
     let {index} = e.detail
     this.setData({
@@ -29,7 +37,22 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options);
-
+  const {cid} = options;
+  this.QueryParams.cid = cid;
+    // console.log(this.QueryParams)
+    this.getGoodsList()
+  },
+  getGoodsList(){
+    request({
+      url: '/goods/search',
+      data: this.QueryParams
+    }).then(res=>{
+      console.log(res)
+      let goodsList = res.data.message.goods;
+      this.setData({
+        goodsList
+      })
+    })
   },
 
   /**
