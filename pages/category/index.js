@@ -11,11 +11,14 @@ Page({
     goodsList: [],
     currentIndex: 0
   },
+  Cates: [],
   handleTitleChane(e) {
     console.log(e)
     let {index} = e.target.dataset
+    const goodsList = this.Cates[index].children
     this.setData({
-      currentIndex: index
+      currentIndex: index,
+      goodsList
     })
   }
   ,
@@ -30,11 +33,11 @@ Page({
   getCates() {
     request({url: '/categories'}).then(res => {
       // console.log(res)
-      const dataList = res.data.message
-      const menuList = dataList.map((item) => {
+      this.Cates = res.data.message
+      const menuList = this.Cates.map((item) => {
         return item.cat_name
       })
-      const goodsList = dataList[0].children
+      const goodsList = this.Cates[0].children
       this.setData({
         menuList,
         goodsList
