@@ -1,18 +1,45 @@
 // pages/category/index.js
+import {request} from '../../request/index'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    menuList: [],
+    goodsList: [],
+    currentIndex: 0
   },
+  handleTitleChane(e) {
+    console.log(e)
+    let {index} = e.target.dataset
+    this.setData({
+      currentIndex: index
+    })
+  }
+  ,
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCates()
+  },
+  getCates() {
+    request({url: '/categories'}).then(res => {
+      // console.log(res)
+      const dataList = res.data.message
+      const menuList = dataList.map((item) => {
+        return item.cat_name
+      })
+      const goodsList = dataList[0].children
+      this.setData({
+        menuList,
+        goodsList
+      })
+    })
   },
 
   /**

@@ -2,16 +2,62 @@
   /*左右两侧原生方式实现滚动*/
   /*原生vh或者百分比是可以参加计算的*/
   height: ~'calc(100vh - 90rpx)';
-  background: aqua;
+  // background: aqua;
   display: flex;
   .menu_group {
     width: 160rpx;
-    background: green;
+    // background: green;
     //overflow: scroll;
+    .menu_item {
+      height: 80rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28rpx;
+      border-left: 4rpx solid var(--themeColor);
+    }
+    .active {
+      color: var(--themeColor);
+      border-left: 4rpx solid currentColor;
+    }
   }
   .cate_detail_list {
     flex: 1;
-    background: red;
+    //background: red;
     //overflow: scroll;
+    .goods_group {
+      .goods_group_title {
+        height: 80rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .group_title_name {
+          margin: 0 20rpx;
+          color: #333333;
+        }
+      }
+      .goods_cate_content {
+        display: flex;
+        flex-wrap: wrap;
+       
+        .goods_cate_content_item{
+          // padding: 20rpx;
+          width: 33.3%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          image {
+            width: 60%;
+          }
+          view {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333333;
+          }
+        }
+      }
+    }
   }
 }

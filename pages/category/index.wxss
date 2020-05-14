@@ -2,16 +2,53 @@
   /*左右两侧原生方式实现滚动*/
   /*原生vh或者百分比是可以参加计算的*/
   height: calc(100vh - 90rpx);
-  background: aqua;
   display: flex;
 }
 .cate_view .menu_group {
   width: 160rpx;
-  background: green;
-  overflow: scroll;
+}
+.cate_view .menu_group .menu_item {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  border-left: 4rpx solid var(--themeColor);
+}
+.cate_view .menu_group .active {
+  color: var(--themeColor);
+  border-left: 4rpx solid currentColor;
 }
 .cate_view .cate_detail_list {
   flex: 1;
-  background: red;
-  overflow: scroll;
+}
+.cate_view .cate_detail_list .goods_group .goods_group_title {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cate_view .cate_detail_list .goods_group .goods_group_title .group_title_name {
+  margin: 0 20rpx;
+  color: #333333;
+}
+.cate_view .cate_detail_list .goods_group .goods_cate_content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cate_view .cate_detail_list .goods_group .goods_cate_content .goods_cate_content_item {
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cate_view .cate_detail_list .goods_group .goods_cate_content .goods_cate_content_item image {
+  width: 60%;
+}
+.cate_view .cate_detail_list .goods_group .goods_cate_content .goods_cate_content_item view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
 }
