@@ -9,7 +9,8 @@ Page({
   data: {
     menuList: [],
     goodsList: [],
-    currentIndex: 0
+    currentIndex: 0,
+    scrollTop : 0
   },
   Cates: [],
   handleTitleChane(e) {
@@ -18,7 +19,8 @@ Page({
     const goodsList = this.Cates[index].children
     this.setData({
       currentIndex: index,
-      goodsList
+      goodsList,
+      scrollTop : 0
     })
   }
   ,

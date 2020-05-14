@@ -7,14 +7,14 @@
            {{item}}
        </view>
     </scroll-view>
-    <scroll-view scroll-y class="cate_detail_list">
-        <view class="goods_group" wx:for="{{goodsList}}" wx:key="cat_id" wx:for-item="item1" wx:for-index="index1">
+    <scroll-view scroll-y scroll-top="{{scrollTop}}" class="cate_detail_list">
+        <view class="goods_group"  wx:for="{{goodsList}}" wx:key="cat_id" wx:for-item="item1" wx:for-index="index1">
             <view class="goods_group_title">
                 <text class="separator">/</text>
                 <text class="group_title_name">{{item1.cat_name}}</text>
                 <text class="separator">/</text>
             </view>
-            <view class="goods_cate_content">
+            <view class="goods_cate_content" >
                 <navigator class="goods_cate_content_item"
                     wx:for="{{item1.children}}"
                            wx:for-item="item2"
