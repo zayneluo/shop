@@ -31,3 +31,9 @@
   font-size: 32rpx;
   color: var(--themeColor);
 }
+.list_no_more {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

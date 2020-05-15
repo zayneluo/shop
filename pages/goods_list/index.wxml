@@ -17,6 +17,9 @@
                 <view class="goods_price">￥{{item.goods_price}}</view>
             </view>
         </navigator>
+        <view class="list_no_more" wx:if="{{isNoMore}}">
+            ---没有数据了---
+        </view>
     </view>
     <view class="list_content" wx:elif="{{currentIndex===1}}">1</view>
     <view class="list_content" wx:else>2</view>

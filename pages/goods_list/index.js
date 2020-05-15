@@ -24,7 +24,8 @@ Page({
       }
     ],
     currentIndex: 0,
-    goodsList: []
+    goodsList: [],
+    isNoMore: false
   },
   handleChangeIndex(e) {
     console.log(e.detail)
@@ -112,6 +113,9 @@ Page({
         title: '没有更多数据',
         icon: 'none',
         duration: 2000
+      })
+      this.setData({
+        isNoMore: true
       })
     }else {
       this.QueryParams.pagenum++;
