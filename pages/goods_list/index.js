@@ -8,6 +8,8 @@ Page({
     pagenum: 1,
     pagesize: 20
   },
+  //总页数
+  totalPages: 1,
   /**
    * 页面的初始数据
    */
@@ -48,9 +50,12 @@ Page({
       data: this.QueryParams
     }).then(res=>{
       console.log(res)
-      let goodsList = res.data.message.goods;
+      let newGoodsList = res.data.message.goods;
+      const oldGoodsList = this.data.goodsList
+      const total = res.data.message.total;
+      this.totalPages = Math.ceil(total/this.QueryParams.pagesize)
       this.setData({
-        goodsList
+        goodsList: [...oldGoodsList,...newGoodsList]
       })
     })
   },
@@ -94,7 +99,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    // console.log('jajjajjaj')
+    if (this.QueryParams.pagenum>=this.totalPages){
+      wx.showToast({
+        title: '没有更多数据',
+        icon: 'none',
+        duration: 2000
+      })
+    }else {
+      this.QueryParams.pagenum++;
+      this.getGoodsList()
+    }
   },
 
   /**
