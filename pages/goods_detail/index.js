@@ -23,6 +23,15 @@ Page({
       })
     })
   },
+  handleImagePreview(e){
+    const {goodsDetail} = this.data;
+    const urls = goodsDetail.pics.map(v=>v.pics_mid_url)
+    const current = e.currentTarget.dataset.current
+    wx.previewImage({
+      urls,
+      current
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

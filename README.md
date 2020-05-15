@@ -50,3 +50,4 @@
 }
 ```
 
+- ### Swiper-item组件的target和currentTarget有点问题，需要注意

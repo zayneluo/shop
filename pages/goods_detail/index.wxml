@@ -3,7 +3,7 @@
 <!--轮播图-->
     <view class="goods_swiper">
         <swiper indicator-dots circular autoplay>
-            <swiper-item wx:for="{{goodsDetail.pics}}" wx:key="pics_id">
+            <swiper-item wx:for="{{goodsDetail.pics}}" wx:key="pics_id" data-current="{{item.pics_mid_url}}" bind:tap="handleImagePreview">
 <!--                <image mode="widthFix" src="{{item.pics_mid_url}}"></image>-->
                 <image mode="aspectFit" src="{{item.pics_mid_url}}"></image>
             </swiper-item>
