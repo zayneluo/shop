@@ -57,6 +57,7 @@ Page({
       this.setData({
         goodsList: [...oldGoodsList,...newGoodsList]
       })
+      wx.stopPullDownRefresh()
     })
   },
 
@@ -92,7 +93,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    // console.log(123)
+    //重置所有数据 并重新发送请求
+    this.QueryParams.pagenum = 1;
+    this.setData({
+      goodsList: []
+    })
+    this.getGoodsList()
   },
 
   /**
