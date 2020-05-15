@@ -17,7 +17,7 @@ Page({
     const {goods_id} = options
     // console.log(goods_id)
     request({url: '/goods/detail', data: {goods_id}}).then(res => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         goodsDetail: res.data.message
       })
