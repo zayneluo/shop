@@ -50,7 +50,7 @@ Page({
       url: '/goods/search',
       data: this.QueryParams
     }).then(res=>{
-      console.log(res)
+      // console.log(res)
       let newGoodsList = res.data.message.goods;
       const oldGoodsList = this.data.goodsList
       const total = res.data.message.total;

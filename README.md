@@ -29,3 +29,24 @@
 - ### 小程序对ES6模块化支持并不全面（官方推荐CommonJS规范）
 
 - ### 小程序中本地存储可以存储任意类型的数据
+
+- ### 小程序的swiper组件有默认的高度，需要自己调整
+
+```css
+原图的宽度 / 原图的高度 = 变化后的图片宽度 / 要设置的高度
+```
+
+- ### 设置文本溢出到第几行出现省略号
+
+```css
+.line2 {
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal!important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical
+}
+```
+

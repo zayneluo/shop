@@ -1,18 +1,27 @@
 // pages/goods_detail/index.js
+import {request} from "../../request/index"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsDetail: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const {goods_id} = options
+    // console.log(goods_id)
+    request({url: '/goods/detail', data: {goods_id}}).then(res => {
+      console.log(res)
+      this.setData({
+        goodsDetail: res.data.message
+      })
+    })
   },
 
   /**
