@@ -51,3 +51,5 @@
 ```
 
 - ### Swiper-item组件的target和currentTarget有点问题，需要注意
+
+- ### navigator组件跳转页面如果是tabbar上的页面需要设置opentype为switchtab
