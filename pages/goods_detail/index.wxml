@@ -46,7 +46,7 @@
             <text class="iconfont icon-gouwuche"></text>
             <view class="tool_name">购物车</view>
         </navigator>
-        <view class="bottom_item btn_cart">
+        <view class="bottom_item btn_cart" bind:tap="handleCartAdd">
             加入购物车
         </view>
         <view class="bottom_item btn_buy">
