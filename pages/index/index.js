@@ -18,7 +18,7 @@ Page({
       url: '/home/swiperdata'
     }).then(res => {
       this.setData({
-        swiperList: res.data.message
+        swiperList: res
       })
     })
   },
@@ -27,7 +27,7 @@ Page({
       url: '/home/catitems'
     }).then(res => {
       this.setData({
-        catList: res.data.message
+        catList: res
       })
     })
   },
@@ -36,7 +36,8 @@ Page({
       url: '/home/floordata'
     }).then(res => {
       this.setData({
-        floorList: res.data.message
+        // floorList: res.data.message
+        floorList: res
       })
     })
   },

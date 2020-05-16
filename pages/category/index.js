@@ -54,22 +54,20 @@ Page({
       this.getCates()
     }
   },
-  getCates() {
-    request({url: '/categories'}).then(res => {
-      // console.log(res)
-      this.Cates = res.data.message
-      wx.setStorageSync('cates',{
-        data: this.Cates,
-        time: Date.now()
-      })
-      const menuList = this.Cates.map((item) => {
-        return item.cat_name
-      })
-      const goodsList = this.Cates[0].children
-      this.setData({
-        menuList,
-        goodsList
-      })
+  async getCates() {
+    const res = await request({url: '/categories'})
+    this.Cates = res
+    wx.setStorageSync('cates',{
+      data: this.Cates,
+      time: Date.now()
+    })
+    const menuList = this.Cates.map((item) => {
+      return item.cat_name
+    })
+    const goodsList = this.Cates[0].children
+    this.setData({
+      menuList,
+      goodsList
     })
   },
 

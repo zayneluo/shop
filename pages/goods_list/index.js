@@ -45,21 +45,19 @@ Page({
     // console.log(this.QueryParams)
     this.getGoodsList()
   },
-  getGoodsList(){
-    request({
+  async getGoodsList(){
+    const res = await request({
       url: '/goods/search',
       data: this.QueryParams
-    }).then(res=>{
-      // console.log(res)
-      let newGoodsList = res.data.message.goods;
-      const oldGoodsList = this.data.goodsList
-      const total = res.data.message.total;
-      this.totalPages = Math.ceil(total/this.QueryParams.pagesize)
-      this.setData({
-        goodsList: [...oldGoodsList,...newGoodsList]
-      })
-      wx.stopPullDownRefresh()
     })
+    let newGoodsList = res.goods;
+    const oldGoodsList = this.data.goodsList
+    const total = res.total;
+    this.totalPages = Math.ceil(total/this.QueryParams.pagesize)
+    this.setData({
+      goodsList: [...oldGoodsList,...newGoodsList]
+    })
+    wx.stopPullDownRefresh()
   },
 
   /**

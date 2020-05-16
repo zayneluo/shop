@@ -16,11 +16,13 @@ Page({
   onLoad: function (options) {
     const {goods_id} = options
     // console.log(goods_id)
-    request({url: '/goods/detail', data: {goods_id}}).then(res => {
-      // console.log(res)
-      this.setData({
-        goodsDetail: res.data.message
-      })
+    this.getGoodsDetail(goods_id)
+
+  },
+  async getGoodsDetail(goods_id){
+    const res = await request({url: '/goods/detail', data: {goods_id}})
+    this.setData({
+      goodsDetail: res
     })
   },
   handleImagePreview(e) {

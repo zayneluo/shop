@@ -53,3 +53,13 @@
 - ### Swiper-item组件的target和currentTarget有点问题，需要注意
 
 - ### navigator组件跳转页面如果是tabbar上的页面需要设置opentype为switchtab
+
+- 之前的版本的小程序使用async和await有问题，可以引入Facebook的库解决，现在使用正常
+
+[[regenerator](https://github.com/facebook/regenerator)](https://github.com/facebook/regenerator/blob/5703a79746fffc152600fdcef46ba9230671025a/packages/regenerator-runtime/runtime.js)
+
+```js
+//每个页面都需要引入
+import regeneratorRuntime from '../../lib/runtime/runtime';
+```
+
