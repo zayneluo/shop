@@ -1,4 +1,5 @@
 // pages/cart/index.js
+import {getSetting,openSetting,getAddress} from '../../request/index'
 Page({
 
   /**
@@ -7,31 +8,21 @@ Page({
   data: {
 
   },
-  handleGetAddress(){
-    wx.getSetting({
-      success(res1){
-        //拿到用户授权状态 true、false、undefined
-        const auth = res1.authSetting['scope.address']
-        //如果之前的授权状态是拒绝，打开设置页，让用户同意
-        if (auth === false) {
-          wx.openSetting({
-            success(res2){
-              wx.chooseAddress({
-                success(res3){
-                  console.log(res3)
-                }
-              })
-            }
-          })
-        } else {
-          wx.chooseAddress({
-            success(res4){
-              console.log(res4)
-            }
-          })
-        }
+  handleTap(){
+    this.getUserAddress()
+  },
+  async getUserAddress(){
+    try {
+      const res = await getSetting();
+      if (res.authSetting["scope.address"] === false ){
+        await openSetting()
       }
-    })
+      const res2 = await getAddress()
+    }catch (e) {
+      console.log(e)
+    }
+
+
   },
   handleGetUserInfo(e){
     console.log(e)

@@ -1,7 +1,7 @@
 /**
  * 用Promise来封装微信请求
  * @param params
- * @returns {Promise<unknown>}
+ * @returns {Promise<Function>}
  */
 let requestTimes = 0;
 export const request = (params)=>{
@@ -29,5 +29,53 @@ export const request = (params)=>{
       }
     });
 
+  })
+}
+/**
+ * 封装微信获取设置
+ * @returns {Promise<Function>}
+ */
+export const getSetting = () => {
+  return new Promise((resolve,reject)=>{
+    wx.getSetting({
+      success(res){
+        resolve(res)
+      },
+      fail(err){
+        reject(reject)
+      }
+    })
+  })
+}
+/**
+ * 封装微信获取地址
+ * @returns {Promise<Function>}
+ */
+export const getAddress = () => {
+  return new Promise((resolve, reject)=>{
+    wx.chooseAddress({
+      success(res){
+        resolve(res)
+      },
+      fail(err){
+        reject(reject)
+      }
+    })
+  })
+}
+/**
+ * 封装微信打开设置
+ * @returns {Promise<unknown>}
+ */
+export const openSetting = () =>{
+  return new Promise((resolve, reject)=>{
+    wx.openSetting({
+      success(res){
+        resolve(res)
+      },
+      fail(err){
+        reject(reject)
+      }
+    })
   })
 }

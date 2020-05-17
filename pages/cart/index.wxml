@@ -1,4 +1,4 @@
-<button bind:tap="handleGetAddress">获取收货地址</button>
+<button bind:tap="handleTap">获取收货地址</button>
 <button open-type="getUserInfo" bindgetuserinfo="handleGetUserInfo">获取用户信息</button>
 <button bindtap="handleGetAuth">获取用户授权状态</button>
 <button open-type="openSetting">点开设置</button>
