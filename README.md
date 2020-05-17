@@ -54,7 +54,7 @@
 
 - ### navigator组件跳转页面如果是tabbar上的页面需要设置opentype为switchtab
 
-- 之前的版本的小程序使用async和await有问题，可以引入Facebook的库解决，现在使用正常
+- ### 之前的版本的小程序使用async和await有问题，可以引入Facebook的库解决，现在使用正常
 
 [[regenerator](https://github.com/facebook/regenerator)](https://github.com/facebook/regenerator/blob/5703a79746fffc152600fdcef46ba9230671025a/packages/regenerator-runtime/runtime.js)
 
@@ -62,4 +62,6 @@
 //每个页面都需要引入
 import regeneratorRuntime from '../../lib/runtime/runtime';
 ```
+
+- ### 直接通过微信接口获取用户地址可能会出问题，因为用户如果选择拒绝之后，再次点击不会弹出提示获取用户收货地址的确认弹窗
 
