@@ -1,5 +1,5 @@
 // pages/cart/index.js
-import {getSetting, openSetting, getAddress,showToast} from '../../request/index'
+import {getSetting, openSetting, getAddress,showToast,showModal} from '../../request/index'
 
 Page({
 
@@ -78,31 +78,41 @@ Page({
     this.countData(carts)
   },
   //商品数量编辑
-  handleNumEdit(e) {
+  async handleNumEdit(e) {
     const {operation, index} = e.target.dataset
     // console.log(operation,index)
     const {carts} = this.data
     let _this = this
     if (operation === 'minus') {
-      if (carts[index].num <= 1) {
+      if (carts[index].num === 1) {
 
-        wx.showModal({
-          title: '提示',
-          content: '你确定要删除该商品吗？',
-          success(res) {
-            if (res.confirm) {
-              carts.splice(index, 1)
-              // debugger
-              _this.setData({
-                carts
-              })
-              _this.countData(carts)
-              wx.setStorageSync('carts', carts)
-            } else {
-              carts[index].num = 1
-            }
-          }
-        })
+        // wx.showModal({
+        //   title: '提示',
+        //   content: '你确定要删除该商品吗？',
+        //   success(res) {
+        //     if (res.confirm) {
+        //       carts.splice(index, 1)
+        //       // debugger
+        //       _this.setData({
+        //         carts
+        //       })
+        //       _this.countData(carts)
+        //       wx.setStorageSync('carts', carts)
+        //     } else {
+        //       carts[index].num = 1
+        //     }
+        //   }
+        // })
+       let res =  await showModal({title: '提示',content: '你确定要删除该商品吗？'})
+        // console.log(res)
+        if (res.confirm){
+          carts.splice(index,1)
+          this.setData({
+            carts
+          })
+          this.countData(carts)
+          wx.setStorageSync('carts',carts)
+        }
       } else {
         carts[index].num--
       }

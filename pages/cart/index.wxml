@@ -6,7 +6,7 @@
             <view>{{address.detailAddress}}</view>
         </view>
         <view class="address_info_phone">
-            {{address.telNumber}}
+            {{address.telNusmber}}
         </view>
     </view>
 </view>
