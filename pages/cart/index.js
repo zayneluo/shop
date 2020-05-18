@@ -1,12 +1,17 @@
 // pages/cart/index.js
 import {getSetting,openSetting,getAddress} from '../../request/index'
+import lodash from '../../utils/lodash'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    address: {},
+    carts: [],
+    allChecked: false,
+    totalPrice: 0,
+    totalNum: 0
   },
   handleTap(){
     this.getUserAddress()
@@ -18,24 +23,35 @@ Page({
         await openSetting()
       }
       const res2 = await getAddress()
+      res2.detailAddress = res2.provinceName+res2.cityName+res2.countyName+res2.detailInfo
+      // console.log(res2)
+      this.setData({
+        address : res2
+      })
+      wx.setStorageSync('address',res2)
     }catch (e) {
       console.log(e)
     }
-
-
   },
-  handleGetUserInfo(e){
-    console.log(e)
-  },
-  handleGetAuth(){
-    wx.getSetting({
-      complete: (res) => {
-        console.log(res);
-
-      },
+  countData(carts){
+    //计算购物车全选，总件数，总价格
+    let allChecked = true
+    let totalPrice = 0
+    let totalNum = 0
+    carts.forEach((item)=>{
+      if (item.checked){
+        totalPrice += item.goods_price*item.num
+        totalNum += item.num
+      }else {
+        allChecked = false
+      }
+    })
+    this.setData({
+      allChecked,
+      totalPrice,
+      totalNum
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -54,7 +70,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const address = wx.getStorageSync('address')
+    // this.setData({address})
+    //获取缓存中购物车数据
+    const carts = wx.getStorageSync('carts')
+    this.setData({
+      carts,address
+    })
+    this.countData(carts)
   },
 
   /**

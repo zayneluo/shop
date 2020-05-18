@@ -45,7 +45,9 @@ Page({
         goods_name: goodsDetail.goods_name,
         goods_price: goodsDetail.goods_price,
         goods_small_logo: goodsDetail.goods_small_logo,
-        num: 1
+        num: 1,
+        //为购物车是否选中新增一个属性
+        checked : true
       })
     } else {
       console.log('else')
