@@ -12,10 +12,10 @@
 </view>
 <view class="cart">
     <view class="cart_title">购物车</view>
-    <view class="cart_list">
+    <view wx:if="{{carts.length!=0}}" class="cart_list">
         <view class="cart_item" wx:for="{{carts}}" wx:key="goods_id">
             <view class="cart_check_wrap">
-                <checkbox-group>
+                <checkbox-group data-index="{{index}}"  bind:change="handleItemChange">
                     <checkbox checked="{{item.checked}}"></checkbox>
                 </checkbox-group>
             </view>
@@ -29,18 +29,19 @@
                 <view class="cart_tool">
                     <view class="goods_price">￥{{item.goods_price}}</view>
                     <view class="goods_nums_wrap">
-                        <view class="btn_num">-</view>
+                        <view class="btn_num" data-index="{{index}}" data-operation="minus" bind:tap="handleNumEdit">-</view>
                         <view class="goods_num">{{item.num}}</view>
-                        <view class="btn_num">+</view>
+                        <view class="btn_num" data-index="{{index}}" data-operation="plus" bind:tap="handleNumEdit">+</view>
                     </view>
                 </view>
             </view>
         </view>
     </view>
+    <image wx:else mode="widthFix" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589787544178&di=3a35213b4cb2eb0a02ff4779f87bbefc&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F05%2F23%2F0d2019a7ca7937adaf34a3b15fd7b92e.jpg"></image>
 </view>
 <view class="btm_cart">
     <view class="cart_all_wrap">
-        <checkbox-group>
+        <checkbox-group bind:change="selectAll">
             <checkbox checked="{{allChecked}}"></checkbox>
             <text>全选</text>
         </checkbox-group>
