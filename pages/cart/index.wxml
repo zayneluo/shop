@@ -50,5 +50,5 @@
         <view class="total_price">合计：<text>￥{{totalPrice}}</text></view>
         <view class="transportation_expenses">包含运费</view>
     </view>
-    <view class="cart_order">共计{{totalNum}}件</view>
+    <view class="cart_order" bind:tap="handleBalance">共计{{totalNum}}件</view>
 </view>

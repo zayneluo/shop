@@ -79,3 +79,19 @@ export const openSetting = () =>{
     })
   })
 }
+
+export const showToast = (params) => {
+  return new Promise((resolve, reject)=>{
+    wx.showToast(
+      {
+        ...params,
+        success(res){
+          resolve(res)
+        },
+        fail(err){
+          reject(err)
+        }
+      }
+    )
+  })
+}

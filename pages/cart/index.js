@@ -1,5 +1,5 @@
 // pages/cart/index.js
-import {getSetting, openSetting, getAddress} from '../../request/index'
+import {getSetting, openSetting, getAddress,showToast} from '../../request/index'
 
 Page({
 
@@ -115,6 +115,21 @@ Page({
       carts
     })
     wx.setStorageSync('carts', carts)
+  },
+  async handleBalance(){
+    //需要有选中的商品并且有收货地址 再跳转到支付页面
+    const {totalNum,address} = this.data
+    if (!totalNum) {
+      await showToast({title: '您没有选中商品',duration: 500,icon: 'none'})
+      return
+    }
+    if (!address.cityName){
+      await showToast({title: '您没有收货地址',duration: 500,icon: 'none'})
+      return
+    }
+    wx.navigateTo({
+      url: '/pages/pay/index'
+    })
   },
   /**
    * 生命周期函数--监听页面加载
