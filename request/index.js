@@ -5,12 +5,18 @@
  */
 let requestTimes = 0;
 export const request = (params)=>{
+  let header = {};
+  //进一步封装request，可以不用传请求头
+  if (params.url.includes('/my/')){
+    header['Authorization']=wx.getStorageSync('token')
+  }
   const baseUrl = "https://api-hmugo-web.itheima.net/api/public/v1"
   requestTimes++
   return new Promise((resolve,reject)=>{
     wx.request({
       ...params,
       url: baseUrl+params.url,
+      header: {...header,...params.header},
       success: (result) => {
         // resolve(result)
         if (result.data.meta && result.data.meta.status === 200){
