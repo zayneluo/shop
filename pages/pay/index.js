@@ -1,5 +1,5 @@
 // pages/cart/index.js
-import {getSetting, openSetting, getAddress,showToast,showModal} from '../../request/index'
+import {getSetting, openSetting, getAddress,showToast,showModal,request,payment} from '../../request/index'
 
 Page({
 
@@ -28,10 +28,45 @@ Page({
       totalNum
     })
   },
-  handleOrderPay (){
-    //跳转到auth页面进行用户授权操作
+  async handleOrderPay (){
+    const token = wx.getStorageSync('token')
+    if (!token){
+      //跳转到auth页面进行用户授权操作
+      wx.navigateTo({
+        url: '/pages/auth/index'
+      })
+      return
+    }
+    //构造订单参数
+    const {totalPrice,address,carts} = this.data
+    const order_price = totalPrice;
+    const consignee_addr = address.detailAddress
+    const goods = carts.map(value => {
+      return {
+        goods_id: value.goods_id,
+        goods_number: value.num,
+        goods_price: value.goods_price
+      }
+    })
+    const orderParams = {order_price,consignee_addr,goods}
+    //开始创建订单
+    const {order_number} = await request({url: '/my/orders/create',method: 'post',data:orderParams,header:{Authorization:token}})
+    //获取支付参数
+    const {pay} = await request({url: '/my/orders/req_unifiedorder',method: 'post',data:{order_number},header:{Authorization:token}})
+    await payment(pay)
+    //查询订单状态
+    const message = await request({url: '/my/orders/chkOrder',method: 'post',data:{order_number},header:{Authorization:token}})
+    await showToast({
+      title: message
+    })
+    //更新购物车数据
+    // this.setData({
+    //   carts: carts.filter(v=>!v.checked)
+    // })
+    let localCarts = wx.getStorageSync('carts')
+    wx.setStorageSync('carts',localCarts.filter(v=>!v.checked))
     wx.navigateTo({
-      url: '/pages/auth/index'
+      url: '/pages/order/index'
     })
   },
   async handleBalance(){

@@ -123,3 +123,14 @@ export const login = ()=>{
     })
   })
 }
+export const payment = (pay)=>{
+  return new Promise((resolve, reject) => {
+    wx.requestPayment({
+      ...pay,
+      success (res) {
+        resolve(res)
+      },
+      fail (res) { }
+    })
+  })
+}
