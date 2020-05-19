@@ -29,11 +29,10 @@ Page({
     })
   },
   handleOrderPay (){
-    // wx.login({
-    //   success(res){
-    //     console.log(res)
-    //   }
-    // })
+    //跳转到auth页面进行用户授权操作
+    wx.navigateTo({
+      url: '/pages/auth/index'
+    })
   },
   async handleBalance(){
     //需要有选中的商品并且有收货地址 再跳转到支付页面

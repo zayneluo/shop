@@ -1,11 +1,24 @@
 // pages/auth/index.js
+import {login, request} from '../../request/index'
+
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-
+  data: {},
+   handleGetUserInfo(e) {
+    this.wxLogin(e);
+  },
+  async wxLogin(e){
+    const {encryptedData, rawData, signature, iv} = e.detail
+    const {code} = await login();
+    const tokenParam = Object.assign({},{encryptedData, rawData, signature, iv,code})
+    // console.log(tokenParam)
+    const res = await request({url:'/users/wxlogin',method: 'post',data: tokenParam})
+    // console.log(res)
+    wx.setStorageSync('token',res.token)
+    wx.navigateBack()
   },
 
   /**
